@@ -1,4 +1,7 @@
+import { getSuggestedQuery } from '@testing-library/dom';
+import { async } from 'q';
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Chall = () => {
 	const [api, setApi] = useState({});
@@ -55,6 +58,18 @@ const Chall = () => {
 		setApi(data);
 	};
 
+	const postText = async (url, text) => {
+		const data = await fetch(url, {
+			method: 'POST',
+			headers: {
+				'content-type': 'application/json',
+				Application: 'application/json',
+			},
+			body: JSON.stringify(text),
+		}).then((res) => res.json());
+		console.log(data);
+	};
+
 	const handleChange = (e) => {
 		setText(e.target.value);
 	};
@@ -66,14 +81,35 @@ const Chall = () => {
 		} else {
 			setMessage('Not palindrome');
 		}
+		const postInput = { text };
+
+		postText('/text', postInput);
+	};
+
+	const getUser = async (url) => {
+		const user = await fetch(url, {
+			method: 'GET',
+			headers: {
+				'content-type': 'application/json',
+				Application: 'application/json',
+			},
+		}).then((res) => res.json());
+		console.log(user);
 	};
 
 	useEffect(() => {
 		getData('/api');
+		getUser('https://jsonplaceholder.typicode.com/users/1');
 	}, []);
 
 	return (
 		<div className="App">
+			<Link to="/form">Go to Form</Link>
+			<br />
+			<Link to="/sort">Go to Sorting</Link>
+			<br />
+			<Link to="/login">Go to LoginForm</Link>
+			<br />
 			<input type="text" value={text} onChange={handleChange} />
 			<button onClick={checkPalindrome}>Check Palindrom</button>
 			<h4>{message}</h4>

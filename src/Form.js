@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
+import { Link } from 'react-router-dom';
 
 const Form = () => {
 	const [userInfo, setUserInfo] = useState({ userName: '', password: '' });
@@ -20,6 +21,8 @@ const Form = () => {
 	};
 	return (
 		<>
+			<Link to="/">Go to Chall</Link>
+
 			{isSignIn ? (
 				<SignIn
 					userInfo={userInfo}
