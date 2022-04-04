@@ -66,7 +66,38 @@ const Sorting = () => {
 		return middle;
 	};
 
-	console.log(middle('rt'));
+	const str = 'Codility we';
+	const numK = 14;
+
+	const crop = (message, K) => {
+		message = message.substring(0, K + 1);
+		const messageArr = message.split(' ');
+		let croppedMessage = '';
+		messageArr.forEach((word) => {
+			croppedMessage += word;
+			if (croppedMessage.length <= K) {
+				croppedMessage += ' ';
+			} else {
+				const indexPosition = croppedMessage.length - word.length;
+				croppedMessage = croppedMessage.substring(0, indexPosition);
+				return croppedMessage.trim();
+			}
+		});
+		return croppedMessage.trim();
+		// if (K < 1) {
+		// 	return '';
+		// }
+		// if (message.length <= K) {
+		// 	return message.trim();
+		// }
+		// K++;
+		// console.log(message[--K]);
+		// while (--K && message[K] !== ' ');
+		// return message.substring(0, K).trim();
+	};
+
+	console.log(crop(str, numK));
+	//console.log(middle('rt'));
 	// console.log(flatten(arr));
 	// console.log(shuffle(numArr));
 	return (
