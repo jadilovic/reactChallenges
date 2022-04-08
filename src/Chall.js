@@ -1,9 +1,13 @@
-import { getSuggestedQuery } from '@testing-library/dom';
-import { async } from 'q';
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Chall = () => {
+	const [data, setData] = useState({
+		id: '1t4',
+		title: 'How to pass state in react-router-dom',
+		tag: ['reactjs', 'react-router-dom'],
+	}); // first example
 	const [api, setApi] = useState({});
 	const [text, setText] = useState('');
 	const [message, setMessage] = useState('');
@@ -86,7 +90,7 @@ const Chall = () => {
 		postText('/text', postInput);
 	};
 
-	const getUser = async (url) => {
+	const getUser = async (url, id) => {
 		const user = await fetch(url, {
 			method: 'GET',
 			headers: {
@@ -94,13 +98,17 @@ const Chall = () => {
 				Application: 'application/json',
 			},
 		}).then((res) => res.json());
+		// const user = await axios.get(url, { params: { id } });
 		console.log(user);
 	};
 
 	useEffect(() => {
 		getData('/api');
+		// getUser('https://jsonplaceholder.typicode.com/users', '1');
 		getUser('https://jsonplaceholder.typicode.com/users/1');
 	}, []);
+
+	console.log(data);
 
 	return (
 		<div className="App">
@@ -109,6 +117,16 @@ const Chall = () => {
 			<Link to="/sort">Go to Sorting</Link>
 			<br />
 			<Link to="/login">Go to LoginForm</Link>
+			<br />
+			<Link to="/login" state={{ data: data }}>
+				Go to LoginForm with state
+			</Link>
+			<br />
+			<Link to="/count">Go to Counter</Link>
+			<br />
+			<Link to="/beer">Go to Beer</Link>
+			<br />
+			<Link to="/profile">Profile</Link>
 			<br />
 			<input type="text" value={text} onChange={handleChange} />
 			<button onClick={checkPalindrome}>Check Palindrom</button>

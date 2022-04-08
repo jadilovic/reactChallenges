@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { login } from './utils';
+import { useLocation } from 'react-router-dom';
+
 import './styles.css';
 
 // ================ LOGIN FORM ====================
@@ -19,9 +21,13 @@ import './styles.css';
 //    out how to log in successfully.
 
 export default function LoginForm() {
+	const location = useLocation();
 	const [userInput, setUserInput] = useState({ email: '', password: '' });
 	const [disableButton, setDisableButton] = useState(true);
 	const [errorMsg, setErrorMsg] = useState('');
+
+	const data = location.state?.data;
+	console.log('data : ', data);
 
 	const handleChange = (e) => {
 		e.preventDefault();
@@ -60,6 +66,8 @@ export default function LoginForm() {
 
 	return (
 		<div className="wrapper">
+			<h1> {data ? data.title : 'Go to Home'} </h1>
+
 			<div className="row">
 				<label htmlFor={'email'}>Email</label>
 				<input
