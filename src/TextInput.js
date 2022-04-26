@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 
 const TextInput = () => {
 	const [name, setName] = useState('');
-	const focusRef = useRef();
+	const focusRef = useRef(0);
 
 	const handleClick = (e) => {
 		e.preventDefault();
@@ -19,8 +19,8 @@ const TextInput = () => {
 		<>
 			<h3>TextInput</h3>
 			<input ref={focusRef} value={name} onChange={(e) => handleChange(e)} />
-			<h6>{focusRef.current}</h6>
-			<h6>{name}</h6>
+			<h6>ref : {focusRef.current}</h6>
+			<h6>state : {name}</h6>
 			<button onClick={handleClick}>focus</button>
 		</>
 	);

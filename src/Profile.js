@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import TextInput from './TextInput';
+import Arrays from './Arrays';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -138,6 +139,7 @@ const ResponsiveAppBar = () => {
 				</Container>
 			</AppBar>
 			<TextInput />
+			<Arrays />
 		</>
 	);
 };
