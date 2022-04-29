@@ -33,14 +33,22 @@ const Arrays = () => {
 	console.log(sum);
 	console.log(null == {});
 
-	// const pp = new Promise((res, rej) => {
-	// 	setTimeout(() => {
-	// 		console.log('responded');
-	// 	}, 1);
-	// 	if (true) {
-	// 		res();
-	// 	}
-	// }).then((res) => );
+	const pp = new Promise((res, rej) => {
+		if (false) {
+			setTimeout(() => {
+				res('done');
+			}, 2);
+		} else {
+			setTimeout(() => {
+				rej('fail');
+			}, 2);
+		}
+	});
+
+	pp.then(
+		(res) => console.log(res),
+		() => console.log('hello')
+	).finally((done) => console.log(done));
 
 	return <div>Arrays</div>;
 };
