@@ -139,7 +139,7 @@ const ResponsiveAppBar = () => {
 				</Container>
 			</AppBar>
 			<TextInput />
-			<Arrays />
+			<Arrays firstName={'Jasmin'} lastName={'Adilovic'} />
 		</>
 	);
 };
